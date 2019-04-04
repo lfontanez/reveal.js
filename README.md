@@ -1,5 +1,39 @@
 # What's new in my fork
 
+Wanted to try this, but original code was broken. Simple to fix though.
+
+    Mixed Content error ...
+    createObjectURL - No function was found that matched the signature provided...
+
+Got it to work in Chrome.
+
+## What I fixed
+
+Issues I fixed:
+
+1. Mixed content - Google Fonts in css were being accessed insecurely. Changed to HTTPS.
+2. createObjectURL() error
+     ``createObjectURL - No function was found that matched the signature provided.
+``
+
+    From the docs: https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
+    > **Important:** If you still have code that relies on createObjectURL() to attach streams to media elements,
+    >      you need to update your code to simply set srcObject to the MediaStream directly.
+     
+## Requirements
+If you're going to run this code, keep in mind:
+
+- You have to host the code in a web server.
+- Must be accessed by HTTPS (setup your SSL)
+
+or it won't work.
+
+## Fixed Live Demo
+View the my fixed live demo! [https://sandbox.r1software.com/gesture_demo_fixed/](https://sandbox.r1software.com/gesture_demo_fixed/)
+
+# Original Readme Below
+
+## What's new in my fork
 This is what I got when I combined webcam-based gesture recognition with Hakim El Hattab's reveal.js.
 It took me a while to write and fine tune the detection algorithms. Even then, the algorithms are only about 80% accurate. You get the gist of it though: 
 A flick of the hand in mid-air changes the slide.
@@ -7,14 +41,12 @@ A two hand flick up or down activates the slide overview.
 
 View the live demo! [http://revealjs.herokuapp.com/](http://revealjs.herokuapp.com/)
 
-## How to use
-
+### How to use
 Instructions and troubleshooting are included in the live demo.
 
 P.S. I included a really basic node.js file server. The page needs to be served in order to allow webcam access.
 
-# Forked from reveal.js
-
+## Forked from reveal.js
 A framework for easily creating beautiful presentations using HTML. [Check out the live demo](http://lab.hakim.se/reveal-js/).
 
 reveal.js comes with a broad range of features including [nested slides](https://github.com/hakimel/reveal.js#markup), [markdown contents](https://github.com/hakimel/reveal.js#markdown), [PDF export](https://github.com/hakimel/reveal.js#pdf-export), [speaker notes](https://github.com/hakimel/reveal.js#speaker-notes) and a [JavaScript API](https://github.com/hakimel/reveal.js#api). It's best viewed in a browser with support for CSS 3D transforms but [fallbacks](https://github.com/hakimel/reveal.js/wiki/Browser-Support) are available to make sure your presentation can still be viewed elsewhere.
@@ -29,15 +61,13 @@ The framework is and will remain free. Donations are available as an optional wa
 
 [![Click here to lend your support to: reveal.js and make a donation at www.pledgie.com !](http://www.pledgie.com/campaigns/18182.png?skin_name=chrome)](http://www.pledgie.com/campaigns/18182)
 
-## rvl.io
-
+### rvl.io
 Slides are written using HTML or markdown but there's also an online editor for those of you who prefer a more traditional user interface. Give it a try at [www.rvl.io](http://www.rvl.io).
 
 
-## Instructions
+### Instructions
 
-### Markup
-
+#### Markup
 Markup heirarchy needs to be ``<div class="reveal"> <div class="slides"> <section>`` where the ``<section>`` represents one slide and can be repeated indefinitely. If you place multiple ``<section>``'s inside of another ``<section>`` they will be shown as vertical slides. The first of the vertical slides is the "root" of the others (at the top), and it will be included in the horizontal sequence. For example:
 
 ```html
@@ -52,8 +82,7 @@ Markup heirarchy needs to be ``<div class="reveal"> <div class="slides"> <sectio
 </div>
 ```
 
-### Markdown
-
+#### Markdown
 It's possible to write your slides using Markdown. To enable Markdown simply add the ```data-markdown``` attribute to your ```<section>``` elements and reveal.js will automatically load the JavaScript parser. 
 
 This is based on [data-markdown](https://gist.github.com/1343518) from [Paul Irish](https://github.com/paulirish) which in turn uses [showdown](https://github.com/coreyti/showdown/). This is sensitive to indentation (avoid mixing tabs and spaces) and line breaks (avoid consecutive breaks). Updates to come.
@@ -67,8 +96,7 @@ This is based on [data-markdown](https://gist.github.com/1343518) from [Paul Iri
 ```
 
 
-### Configuration
-
+#### Configuration
 At the end of your page you need to initialize reveal by running the following code. Note that all config values are optional and will default as specified below.
 
 ```javascript
@@ -106,8 +134,7 @@ Reveal.initialize({
 });
 ```
 
-### Dependencies
-
+#### Dependencies
 Reveal.js doesn't _rely_ on any third party scripts to work but a few optional libraries are included by default. These libraries are loaded as dependencies in the order they appear, for example:
 
 ```javascript
@@ -134,8 +161,7 @@ You can add your own extensions using the same syntax. The following properties 
 - **condition**: [optional] Function which must return true for the script to be loaded
 
 
-### API
-
+#### API
 The Reveal class provides a minimal JavaScript API for controlling navigation and reading state:
 
 ```javascript
@@ -156,8 +182,7 @@ Reveal.getCurrentSlide();
 Reveal.getIndices(); // { h: 0, v: 0 } }
 ```
 
-### States
-
+#### States
 If you set ``data-state="somestate"`` on a slide ``<section>``, "somestate" will be applied as a class on the document element when that slide is opened. This allows you to apply broad style changes to the page based on the active slide.
 
 Furthermore you can also listen to these changes in state via JavaScript:
@@ -168,7 +193,7 @@ Reveal.addEventListener( 'somestate', function() {
 }, false );
 ```
 
-### Slide change event
+#### Slide change event
 
 An 'slidechanged' event is fired each time the slide is changed (regardless of state). The event object holds the index values of the current slide as well as a reference to the previous and current slide HTML nodes.
 
@@ -191,8 +216,7 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 } );
 ```
 
-### Internal links
-
+#### Internal links
 It's easy to link between slides. The first example below targets the index of another slide whereas the second targets a slide with an ID attribute (```<section id="some-slide">```):
 
 ```html
@@ -200,7 +224,7 @@ It's easy to link between slides. The first example below targets the index of a
 <a href="#/some-slide">Link</a>
 ```
 
-## PDF Export
+### PDF Export
 
 Presentations can be exported to PDF via a special print stylesheet. This feature requires that you use [Google Chrome](http://google.com/chrome). 
 Here's an example of an exported presentation that's been uploaded to SlideShare: http://www.slideshare.net/hakimel/revealjs-13872948.
@@ -214,8 +238,7 @@ Here's an example of an exported presentation that's been uploaded to SlideShare
 
 ![Chrome Print Settings](https://s3.amazonaws.com/hakim-static/reveal-js/pdf-print-settings.png)
 
-## Speaker Notes
-
+### Speaker Notes
 If you're interested in using speaker notes, reveal.js comes with a Node server that allows you to deliver your presentation in one browser while viewing speaker notes in another. 
 
 To include speaker notes in your presentation, simply add an `<aside class="notes">` element to any slide. These notes will be hidden in the main presentation view.
@@ -232,18 +255,14 @@ By default, the slides will be served at [localhost:1947](http://localhost:1947)
 
 You can change the appearance of the speaker notes by editing the file at `plugin/speakernotes/notes.html`.	
 
-### Known Issues
-
+#### Known Issues
 - The notes page is supposed to show the current slide and the next slide, but when it first starts, it always shows the first slide in both positions. 
 
-## Folder Structure
+### Folder Structure
 - **css/** Core styles without which the project does not function
 - **js/** Like above but for JavaScript
 - **plugin/** Components that have been developed as extensions to reveal.js
 - **lib/** All other third party assets (JavaScript, CSS, fonts)
 
-## License
-
-MIT licensed
-
-Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+### License
+MIT licensed Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
