@@ -29,7 +29,7 @@ If you're going to run this code, keep in mind:
 or it won't work.
 
 ## Fixed Live Demo
-View the my fixed live demo! [https://sandbox.r1software.com/gesture_demo_fixed/](https://sandbox.r1software.com/gesture_demo_fixed/)
+View my fixed live demo! [https://sandbox.r1software.com/gesture_demo_fixed/](https://sandbox.r1software.com/gesture_demo_fixed/)
 
 # Original Readme Below
 
